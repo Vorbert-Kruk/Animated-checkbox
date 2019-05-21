@@ -1,0 +1,84 @@
+:root {
+    --dark-color: #232323;
+    --light-color: #f4f4f4;
+
+    /* Feel free to adjust the size of the text and  checkbox with this variable */
+    --checkbox-size: 4.5rem;
+    /* This value determines currently used hue in checkbox color scheme.
+       You can pick value from 0-360 like in the color wheel
+       If you want to determine your own color with HSL, try this HSL Calculator:
+       https://www.w3schools.com/colors/colors_hsl.asp
+    */
+    --base-hue: 210;
+    --checkbox-color: hsl(var(--base-hue), 100%, 70%);
+  }
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    background-color: var(--dark-color);
+    font-family: Helvetica;
+    user-select: none;
+  }
+  .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  label {
+      display: block;
+      position: relative;
+      cursor: pointer;
+  }
+  input[type='checkbox'] {
+      display: none;
+  }
+  input[type='checkbox'] ~ span {
+      position: relative;
+      color: var(--light-color);
+      font-size: var(--checkbox-size);
+      padding-left: calc(var(--checkbox-size) * 1.1);
+  }
+  input[type='checkbox'] ~ span::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: calc(var(--checkbox-size) * .15);
+      width: calc(var(--checkbox-size) * .85);
+      height: calc(var(--checkbox-size) * .85);
+      border-radius: calc(var(--checkbox-size) * .15);
+      background-color: var(--checkbox-color);
+      box-shadow: 0 0 calc(var(--checkbox-size) * .1) calc(var(--checkbox-size) * .005) var(--checkbox-color);
+  }
+  input[type='checkbox'] ~ div::before,
+  input[type='checkbox'] ~ div::after {
+      content: '';
+      position: absolute;
+      top: calc(var(--checkbox-size) * .2);
+      left: calc(var(--checkbox-size) * .38);
+      width: calc(var(--checkbox-size) * .1);
+      height: calc(var(--checkbox-size) * .75);
+      border-radius: calc(var(--checkbox-size) * .15);
+      background-color: var(--light-color);
+      transition: all 700ms ease;
+  }
+  input[type='checkbox'] ~ div::before {
+      transform: rotate(45deg);
+  }
+  input[type='checkbox'] ~ div::after {
+      transform: rotate(-45deg);
+  }
+  input[type='checkbox']:checked ~ div::before {
+      top: calc(var(--checkbox-size) * .25);
+      left: calc(var(--checkbox-size) * .47);
+      height: calc(var(--checkbox-size) * .7);
+      transform: rotate(30deg);
+  }
+  input[type='checkbox']:checked ~ div::after {
+      top: calc(var(--checkbox-size) * .6);
+      left: calc(var(--checkbox-size) * .21);
+      height: calc(var(--checkbox-size) * .35);
+      transform: rotate(-45deg);
+  }
